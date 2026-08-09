@@ -1,0 +1,2 @@
+IP,Brand,Ports,Vulnerabilities,RTSP_Risk,Security_Score,Risk_Level
+192.168.159.128,Unknown IoT Device,80,0,False,100,LOW

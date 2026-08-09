@@ -1,0 +1,14 @@
+[
+  {
+    "ip": "192.168.159.128",
+    "ports": [
+      "8554",
+      "8888"
+    ],
+    "brand": "Unknown",
+    "rtsp": null,
+    "credentials": [],
+    "vulnerabilities": [],
+    "snapshot": "snapshot_192.168.159.128_20260805_040322.jpg"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "ip": "192.168.159.128",
+    "ports": [
+      "8554",
+      "8888"
+    ],
+    "services": {
+      "8554": "RTSP"
+    },
+    "hostname": "",
+    "brand": "Unknown IoT Device",
+    "vulnerabilities": [],
+    "default_creds": [],
+    "security_score": 100,
+    "risk_level": "LOW"
+  }
+]

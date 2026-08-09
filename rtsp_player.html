@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GAUTAM CCTV Player</title>
+    <style>
+        body { font-family: Arial; background: #0a0a0a; color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: #1a1a2e; padding: 30px; border-radius: 20px; width: 90%; max-width: 800px; text-align: center; border: 1px solid #333; }
+        .banner { background: linear-gradient(135deg, #f093fb, #f5576c); padding: 15px; border-radius: 10px; font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+        .video-container { background: #000; border-radius: 10px; overflow: hidden; margin: 15px 0; }
+        #video { width: 100%; max-height: 500px; background: #000; }
+        .controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 15px 0; }
+        input, button { padding: 12px 20px; border-radius: 8px; border: none; font-size: 14px; }
+        input { flex: 1; min-width: 200px; background: #2a2a3e; color: white; border: 1px solid #444; }
+        button { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; cursor: pointer; font-weight: bold; }
+        button:hover { transform: scale(1.05); }
+        .footer { margin-top: 20px; color: #666; font-size: 12px; }
+        #status { padding: 10px; margin: 10px 0; background: #2a2a3e; border-radius: 8px; }
+        #snapshotContainer img { width: 100%; border-radius: 10px; margin: 10px 0; }
+        .creds-box { background: #2a2a3e; padding: 15px; border-radius: 10px; margin: 10px 0; text-align: left; }
+        .creds-box code { color: #4fc3f7; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="banner">📸 GAUTAM CCTV PLAYER</div>
+
+    <div class="creds-box">
+        <b>🔑 Try these RTSP URLs:</b><br>
+        <code>rtsp://192.168.159.128:8554/mystream</code><br>
+        <code>rtsp://192.168.159.128:8554/stream1</code><br>
+        <code>rtsp://192.168.159.128:8554/live</code>
+    </div>
+
+    <div class="controls">
+        <input type="text" id="rtspUrl" placeholder="rtsp://ip:port/stream" value="rtsp://192.168.159.128:8554/mystream">
+        <button onclick="playStream()">▶️ Play</button>
+        <button onclick="takeSnapshot()">📸 Snapshot</button>
+    </div>
+
+    <div class="video-container">
+        <video id="video" controls autoplay muted></video>
+    </div>
+
+    <div id="status">🔴 Enter RTSP URL and click Play</div>
+    <div id="snapshotContainer"></div>
+
+    <div class="footer">🛡️ Educational Purpose Only | GAUTAM PROJECT</div>
+</div>
+
+<script>
+    const video = document.getElementById('video');
+    const status = document.getElementById('status');
+    const snapContainer = document.getElementById('snapshotContainer');
+
+    function playStream() {
+        const url = document.getElementById('rtspUrl').value;
+        if (!url) {
+            status.innerHTML = '❌ Enter RTSP URL';
+            return;
+        }
+
+        status.innerHTML = '🔄 Connecting to ' + url + '...';
+
+        video.src = url;
+        video.play()
+            .then(() => {
+                status.innerHTML = '✅ Playing: ' + url;
+            })
+            .catch(err => {
+                status.innerHTML = '❌ Error: ' + err.message + ' - Try another URL';
+            });
+    }
+
+    function takeSnapshot() {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const snapshot = canvas.toDataURL('image/png');
+        snapContainer.innerHTML = `
+            <img src="${snapshot}">
+            <p style="color:#2ecc71;">✅ Snapshot captured!</p>
+        `;
+    }
+
+    // Auto play on load
+    setTimeout(playStream, 1500);
+</script>
+</body>
+</html>
