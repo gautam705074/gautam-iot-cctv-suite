@@ -231,7 +231,6 @@ If you find this tool useful:
 ## 📞 Contact
 
 - **GitHub:** [gautam705074](https://github.com/gautam705074)
-- **Email:** gkg9870352@gmail.com
 - **Project URL:** [GAUTAM IoT CCTV SUITE](https://github.com/gautam705074/gautam-iot-cctv-suite)
 
 ---
@@ -286,4 +285,3 @@ cat iot_scan_*.json | python3 -m json.tool
 ---
 
 **Happy Hacking! 🔒**
-
